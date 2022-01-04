@@ -12,8 +12,8 @@ function draw($arr)
 	echo('<table class="ta ble-striped">');
 	echo(
 		'<tr class="well">
-			<td >'.$arr[0].'</td>
-			<td>'.$arr[1].' </td>
+			<td>' . $arr[0] . '</td>
+			<td>' . $arr[1] . '</td>
 		  </tr>'
 		);
 	echo('</table>');

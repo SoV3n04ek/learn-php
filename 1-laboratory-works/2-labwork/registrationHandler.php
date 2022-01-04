@@ -1,7 +1,6 @@
 <?php
 	if (isset($_POST['login']) && isset($_POST['password']))
 	{	
-
 		$handle = fopen('users.txt', 'a+');
 
 		if ($handle) {
@@ -34,10 +33,13 @@
 		{				
 			$handle = fopen('users.txt', 'a+');
 			echo($handle);
+			
 			var_dump($_POST['login']);
 			var_dump($_POST['password']);
-			fwrite($handle, $_POST['login'].'|'.$_POST['password'].PHP_EOL);
+			
+			fwrite($handle, $_POST['login'] . '|' . $_POST['password'] . PHP_EOL);
 			fclose($handle);
+			
 			echo("Succes!");
 		} 
 	}

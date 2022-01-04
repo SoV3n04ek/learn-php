@@ -17,21 +17,23 @@ if ($handle) {
 	    }
 			
 	    if (!feof($handle)) {
-	    echo "Error: unexpected fgets() fail\n";
+	    	echo "Error: unexpected fgets() fail\n";
 		}
 
 	   fclose($handle);
 	}
 
 echo('<h1>Count users: '. $i . '</h1>');
-echo "User ID is " . $_SESSION["is_logined"] . ".<br><br>";
 
+if (isset($_SESSION["is_logined"])) {
+	echo "User ID is " . $_SESSION["is_logined"] . ".<br><br>";
+}
 
 ?>
 
 <br>
-<h1 class="btn btn-success"><a href="login.php">Login</a></h1>
+<h1 class="btn btn-success"><a href="loginForm.php">Login</a></h1>
 <br>
-<h1 class="btn btn-success"><a href="addUser.php">Registation</a></h1>
+<h1 class="btn btn-success"><a href="registrationForm.php">Registation</a></h1>
 <br>
 <h1 class="btn btn-success"><a href="showUsers.php">Show</a></h1>
