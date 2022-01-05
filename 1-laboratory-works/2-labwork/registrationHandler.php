@@ -35,9 +35,17 @@
 			echo($handle);
 			
 			var_dump($_POST['login']);
+			echo '<br>';
+	
 			var_dump($_POST['password']);
-			
-			fwrite($handle, $_POST['login'] . '|' . $_POST['password'] . PHP_EOL);
+			echo '<br>';
+	
+			$log = $_POST['login'];
+			$pas = md5($_POST['password']);
+			var_dump($pas);
+			echo '<br>';
+	
+			fwrite($handle, $log . '|' . $pas . PHP_EOL);
 			fclose($handle);
 			
 			echo("Succes!");

@@ -14,7 +14,7 @@ function draw($arr)
 		'<tr class="well">
 			<td>' . $arr[0] . '</td>
 			<td>' . $arr[1] . '</td>
-		  </tr>'
+		 </tr>'
 		);
 	echo('</table>');
 };
