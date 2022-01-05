@@ -15,6 +15,8 @@
 		if ($login->isCorrect(trim($log), md5(trim($pass))))
 		{
 			echo '<h1>Succesfuly signed</h1>';
+			$_SESSION['isSigned'] = true; 
+			$_SESSION['login']    = $log;
 		}
 		else
 		{
@@ -23,6 +25,10 @@
 	}
 	else 
 	{
-		var_dump(false);
+		echo '<h1>Error </h1>';
 	}
 ?>
+
+<br>
+
+<a href="index.php"> Go Home </a>

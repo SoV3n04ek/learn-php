@@ -12,7 +12,7 @@
 				
 				if ($handle) 
 				{
-					var_dump($login);
+					echo 'Welcome ' . $login . '!!!';
 					echo "<br>";
 
 				    if (feof($handle)) {
@@ -54,10 +54,7 @@
 					'',
 					$string_pas);
 	   		}		
-			
-			var_dump($string_pas);
-			echo '<br>';
-			
+						
 			if ($string_pas != $password)
 			{
 				return false;
