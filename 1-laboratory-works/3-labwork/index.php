@@ -41,18 +41,21 @@ include_once("UserModel.php");
 $usermodel = new UserModel();
 $usermodel->connect();
 
-$users = $usermodel->readAll();
-var_dump($users);
-foreach ($users as $user) { ?>
-<tr>
-		<td> <?= $user["id"];   	   ?> </td>
-		<td> <?= $user["email"];	   ?> </td>
-		<td> <?= $user["password"]; ?> </td>
-		<td> <?= $user["name"];	   ?> </td>
-		<td> <?= $user["last_name"]; ?> </td>
-	</tr>
+$user = $usermodel->readOne();
 
-<?php } ?>
+$user->setPassword("23945r0qi");
+$user->setName("Ivan");
+
+
+if ($usermodel->update($user))
+{
+	echo "Succes Update";
+}
+else 
+	echo "ERROR in Update";
+
+
+?>
 
 </table>
 </body>

@@ -11,7 +11,7 @@
 		//const DELETE_QUERY;
 		const INSERT_QUERY = "INSERT INTO users (email, password, name, last_name) VALUES";
 		const READ_QUERY = "SELECT * FROM `users`";
-		// 
+		const UPDATE_QUERY = "UPDATE `users` SET ";
 
 		protected $connect;
 
@@ -53,18 +53,18 @@
 		public function readOne() : User
 		{
 			$resultq = $this->connect->query(self::READ_QUERY);
-			$resultq = $resultq->fetch_all(MYSQLI_ASSOC);
 			
-			if (!isset($resultq))
+			$result = $resultq->fetch_all(MYSQLI_ASSOC);
+			
+			if ($result)
 			{
-				$id 	   = $resultq[0]["id"];
-				$email 	   = $resultq[0]["email"];
-				$password  = $resultq[0]["password"];
-				$name 	   = $resultq[0]["name"];
-				$last_name = $resultq[0]["last_name"];
+				$id 	   = $result[0]["id"];
+				$email 	   = $result[0]["email"];
+				$password  = $result[0]["password"];
+				$name 	   = $result[0]["name"];
+				$last_name = $result[0]["last_name"];
 
-				$resultUser = new User($id, $email, $password, $name, $last_name);
-				return $resultUser;
+				return new User($id, $email, $password, $name, $last_name); 
 			}
 
 			return new User();
@@ -73,22 +73,36 @@
 		public function readAll()
 		{
 			$resultq = $this->connect->query(self::READ_QUERY);
+			
 			$resultq = $resultq->fetch_all(MYSQLI_ASSOC);
 			
-			if (isset($resultq))
+			if ($resultq)
 				return $resultq;  
 			
 			return false;
 		} 
 
-		public function update()
+		public function update(User $user)
 		{
+			if (isset($user))
+			{
+				$sqlquery = self::UPDATE_QUERY . 
+				"   `email`     = ' " . $user->getEmail()    . " ',
+					`password`  = ' " . $user->getPassword() . " ',
+					`name`      = ' " . $user->getName()     . " ',
+					`last_name` = ' " . $user->getLastName() . "'
+						WHERE id = " . $user->getId() . " ";
 
+				$this->connect->query($sqlquery);
+
+				return true;
+			}
+			return false;
 		}
 
 		public function delete()
 		{
-
+			
 		}
 	}
 
