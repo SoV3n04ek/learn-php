@@ -54,6 +54,9 @@ if ($usermodel->update($user))
 else 
 	echo "ERROR in Update";
 
+$user->setId(14);
+
+$usermodel->delete($user);
 
 ?>
 

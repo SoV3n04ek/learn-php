@@ -4,13 +4,13 @@
 
 	Class UserModel implements IModel
 	{
-		const HOST = 'localhost';
-		const USER = 'root';
-		const PASSWORD = null;
-		const DATABASE = 'new_test';
-		//const DELETE_QUERY;
+		const HOST         = 'localhost';
+		const USER         = 'root';
+		const PASSWORD     = null;
+		const DATABASE     = 'new_test';
+		const DELETE_QUERY = 'DELETE FROM `users` WHERE id = ';
 		const INSERT_QUERY = "INSERT INTO users (email, password, name, last_name) VALUES";
-		const READ_QUERY = "SELECT * FROM `users`";
+		const READ_QUERY   = "SELECT * FROM `users`";
 		const UPDATE_QUERY = "UPDATE `users` SET ";
 
 		protected $connect;
@@ -100,9 +100,9 @@
 			return false;
 		}
 
-		public function delete()
+		public function delete(User $user)
 		{
-			
+			$resultq = $this->connect->query(self::DELETE_QUERY . $user->getId());
 		}
 	}
 
