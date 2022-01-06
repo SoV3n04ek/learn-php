@@ -1,4 +1,4 @@
-
+<?php include_once("User.php"); ?>
 <!-- <h1>Create new user</h1>
 
 <form id="form1" action="registrationHandler.php" method='POST'>
@@ -70,11 +70,11 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);// разбить полученое н
 
 foreach ($rows as $row) { ?>
 	<tr>
-		<td><?= $row["id"] ?></td>
-		<td><?= $row["email"] ?></td>
-		<td><?= $row["password"] ?></td>
-		<td><?= $row["name"] ?></td>
-		<td><?= $row["last_name"] ?></td>
+		<td> <?= $row["id"] 	   ?> </td>
+		<td> <?= $row["email"] 	   ?> </td>
+		<td> <?= $row["password"]  ?> </td>
+		<td> <?= $row["name"] 	   ?> </td>
+		<td> <?= $row["last_name"] ?> </td>
 	</tr>
 <?php
 	}
@@ -99,6 +99,25 @@ $mysqli->close();
 	<button type="submit">Add new user</button>
 </form>
 
+<br>
+
+<table>
+<?php 
+
+// test user
+$user = new User(0, "email@go", "32312p", "name22", "last_name321");
+
+	?>
+
+	<tr>
+		<td> <?= $user->getId();   ?> </td>
+		<td> <?= $user->getEmail();	   ?> </td>
+		<td> <?= $user->getPassword();  ?> </td>
+		<td> <?= $user->getName();	   ?> </td>
+		<td> <?= $user->getLastName(); ?> </td>
+	</tr>
+
+</table>
 
 </body>
 </html>

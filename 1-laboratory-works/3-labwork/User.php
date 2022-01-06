@@ -17,15 +17,15 @@
         	
 	    }
 
-	    public function getId() 	  { return $id; }
+	    public function getId() 	  { return $this->id; }
 
-	    public function getEmail() 	  { return $email; }
+	    public function getEmail() 	  { return $this->email; }
 
-	    public function getPassword() { return $password; }
+	    public function getPassword() { return $this->password; }
 
-	    public function getName() 	  { return $name; }
+	    public function getName() 	  { return $this->name; }
 
-	    public function getLastName() { return $last_name; }
+	    public function getLastName() { return $this->last_name; }
 
 	    // settors
 	 
