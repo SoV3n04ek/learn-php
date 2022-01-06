@@ -1,4 +1,7 @@
-<?php include_once("User.php"); ?>
+<?php 
+include_once("User.php");
+include_once("Post.php");
+?>
 <!-- <h1>Create new user</h1>
 
 <form id="form1" action="registrationHandler.php" method='POST'>
@@ -79,8 +82,6 @@ foreach ($rows as $row) { ?>
 <?php
 	}
 
-$mysqli->close();
-
 ?>
 </table>
 
@@ -116,14 +117,55 @@ $user->setLastName("Martini");
 	?>
 
 	<tr>
-		<td> <?= $user->getId();   ?> </td>
+		<td> <?= $user->getId();   	   ?> </td>
 		<td> <?= $user->getEmail();	   ?> </td>
-		<td> <?= $user->getPassword();  ?> </td>
+		<td> <?= $user->getPassword(); ?> </td>
 		<td> <?= $user->getName();	   ?> </td>
 		<td> <?= $user->getLastName(); ?> </td>
 	</tr>
 
 </table>
 
+<?php 
+
+
+$post = new Post(0, $user->getEmail(), $user->getPassword(), $user->getName(), $user->getLastName());
+ 
+
+?>
+<table>
+	<tr>
+		<td> <?= $post->getId();   	 ?> </td>
+		<td> <?= $post->getTitle();	 ?> </td>
+		<td> <?= $post->getBody();   ?> </td>
+		<td> <?= $post->getUserId(); ?> </td>
+	</tr>
+</table>
+
+<table>
+<?php 
+
+$result = $mysqli->query("SELECT * FROM posts");
+
+if ($result == false)
+{
+	die('mysqli query error');
+}
+
+$mysqli->close();
+
+$rows = $result->fetch_all(MYSQLI_ASSOC);// разбить полученое на массив объектов user
+
+foreach ($rows as $row) { ?>
+	<tr>
+		<td> <?= $row["id"] 	   ?> </td>
+		<td> <?= $row["title"] 	   ?> </td>
+		<td> <?= $row["body"]  ?> </td>
+		<td> <?= $row["user_id"] 	   ?> </td>
+	</tr>
+<?php 
+	}; 
+?>
+</table>
 </body>
 </html>

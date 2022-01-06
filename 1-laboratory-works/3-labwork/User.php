@@ -6,7 +6,7 @@
 		protected $name;
 		protected $last_name;
 
-		public function __construct($id = 0, $email = null, $password = null, $name = null, $last_name = null) 
+		public function __construct($id = 0, $email = '', $password = '', $name = '', $last_name = '') 
 		{
 	 		$this->id 		 = $id;
         	$this->email 	 = $email;

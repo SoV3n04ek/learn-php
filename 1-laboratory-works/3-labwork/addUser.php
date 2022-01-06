@@ -30,6 +30,7 @@ $result = $mysqli->query("
 		' " . $last_name . " ')");
 
 // INSERT INTO users(id, email, password, name, last_name) VALUES (NULL, 'email','pass','name','last_name');
+
 if ($result == false)
 {
 	die('Error in query!');

@@ -1,54 +1,35 @@
 <?php 
 	Class Post {
 		protected $id;
-		protected $email;
-		protected $password;
-		protected $name;
-		protected $last_name;
+		protected $title;
+		protected $body;
+		protected $user_id;
 
-		public function __construct($id = 0, $email = null, $password = null, $name = null, $last_name = null) 
+		public function __construct($id = 0, $title = '', $body = '', $user_id = 0) 
 		{
-	 		
-	 		$this->id 		 = $id;
-        	$this->email 	 = $email;
-        	$this->password  = $password;
-        	$this->name 	 = $name;
-        	$this->last_name = $last_name;
-        	
+	 		$this->id 	   = $id;
+        	$this->title   = $title;
+        	$this->body    = $body;
+        	$this->user_id = $user_id;   	
 	    }
 
-	    public function getId() 	  { return $id; }
+	    public function getId() 	  { return $this->id;      }
 
-	    public function getEmail() 	  { return $email; }
+	    public function getTitle() 	  { return $this->title;   }
 
-	    public function getPassword() { return $password; }
+	    public function getBody()     { return $this->body;    }
 
-	    public function getName() 	  { return $name; }
-
-	    public function getLastName() { return $last_name; }
+	    public function getUserId()   { return $this->user_id; }
 
 	    // settors
 
-	 	public function setId($id) {	
-	    	$this->id = $id;
-	    }
+		public function setId($id) 		   { $this->id = $id;    	    }
+	
+	    public function setEmail($title)   { $this->title = $title;		}
 
-	    public function setEmail($email) {
-	    	$this->email = $email;
-	    }
+	    public function setPassword($body) { $this->body = $body;       }
 
-	    public function setPassword($password) {
-	    	$this->password = $password;
-	    }
-
-	    public function setName($name) {
-	    	$this->name = $name;
-	    }
-
-	    public function setLastName($last_name) {
-			$this->last_name = $last_name;
-	    }
-
+	    public function setName($user_id)  { $this->user_id = $user_id; }
 	       
 	}
 ?>

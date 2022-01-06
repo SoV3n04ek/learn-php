@@ -1,4 +1,6 @@
 <?php
+	include_once("IModel.php");
+	include_once("User.php");
 
 	Class UserModel implements IModel
 	{
@@ -6,28 +8,32 @@
 		const USER = 'root';
 		const PASSWORD = null;
 		const DATABASE = 'new_test';
+		//const DELETE_QUERY;
+		//const INSERT_QUERY;
+		//const READ_QUERY;
+		// 
 
 		protected $connect;
 
-	  	public function __construct() {
-	   
-	    }
-
 		public function connect()
 		{
-			$connect = mysql_connect(self::HOST, self::USER, self::PASSWORD, self::DATABASE);
+			$connect = new mysqli(self::HOST, self::USER, self::PASSWORD, self::DATABASE);
 			if (!$connect) {
 			    die('Connecting error: ' . mysql_error());
 			}
 			// use try catch
 		}
 
+		public function close()
+		{
+			mysql_close($connect);
+		}
 		// get all 
 		// get one : null | first column 
 		// 
 
 		// add argument User $user
-		public function create()
+		public function create(User $user)
 		{
 			$sql = "INSERT INTO users (id, email, password, firstname, lastname) 
 					VALUES (1, 'john@example.com', 'adsolp12123qaWsq', 'John', 'Doe')";
@@ -42,7 +48,7 @@
 
 		public function read()
 		{
-
+			
 		}
 
 		public function update()
@@ -53,11 +59,6 @@
 		public function delete()
 		{
 
-		}
-
-		public function close()
-		{
-			mysql_close($connect);
 		}
 	}
 
