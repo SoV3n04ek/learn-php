@@ -9,16 +9,16 @@
 		const PASSWORD = null;
 		const DATABASE = 'new_test';
 		//const DELETE_QUERY;
-		//const INSERT_QUERY;
-		//const READ_QUERY;
+		const INSERT_QUERY = "INSERT INTO users (email, password, name, last_name) VALUES";
+		const READ_QUERY = "SELECT * FROM `users`";
 		// 
 
 		protected $connect;
 
 		public function connect()
 		{
-			$connect = new mysqli(self::HOST, self::USER, self::PASSWORD, self::DATABASE);
-			if (!$connect) {
+			$this->connect = new mysqli(self::HOST, self::USER, self::PASSWORD, self::DATABASE);
+			if (!$this->connect) {
 			    die('Connecting error: ' . mysql_error());
 			}
 			// use try catch
@@ -28,28 +28,58 @@
 		{
 			mysql_close($connect);
 		}
-		// get all 
-		// get one : null | first column 
-		// 
+	
 
 		// add argument User $user
-		public function create(User $user)
+		public function create(User $user) : bool
 		{
-			$sql = "INSERT INTO users (id, email, password, firstname, lastname) 
-					VALUES (1, 'john@example.com', 'adsolp12123qaWsq', 'John', 'Doe')";
+			$sqlquery = self::INSERT_QUERY . "(
+				' " . $user->getEmail()    . " ', 
+				' " . $user->getPassword() . " ', 
+				' " . $user->getName()     . " ',
+				' " . $user->getLastName() . " ');";
 
-			if (mysqli_query($sql)
+			$resultq = $this->connect->query($sqlquery);
+			
+			if ($resultq != false)
 			{
-			  echo "New record created successfully";
-			} else {
-			  echo "Error: " . $sql . "<br>" . $conn->error;
+			 	return true;
+			}
+			else {
+			  	return false;
 			}
 		}
 
-		public function read()
+		public function readOne() : User
 		{
+			$resultq = $this->connect->query(self::READ_QUERY);
+			$resultq = $resultq->fetch_all(MYSQLI_ASSOC);
 			
+			if (!isset($resultq))
+			{
+				$id 	   = $resultq[0]["id"];
+				$email 	   = $resultq[0]["email"];
+				$password  = $resultq[0]["password"];
+				$name 	   = $resultq[0]["name"];
+				$last_name = $resultq[0]["last_name"];
+
+				$resultUser = new User($id, $email, $password, $name, $last_name);
+				return $resultUser;
+			}
+
+			return new User();
 		}
+
+		public function readAll()
+		{
+			$resultq = $this->connect->query(self::READ_QUERY);
+			$resultq = $resultq->fetch_all(MYSQLI_ASSOC);
+			
+			if (isset($resultq))
+				return $resultq;  
+			
+			return false;
+		} 
 
 		public function update()
 		{

@@ -1,26 +1,14 @@
 <?php 
 include_once("User.php");
 include_once("Post.php");
-?>
-<!-- <h1>Create new user</h1>
+include_once("UserModel.php");
 
-<form id="form1" action="registrationHandler.php" method='POST'>
-	<input type="hidden" name="cst_token" value="1">
-	<div>
-		<input type="text" name="login" value="">
-	</div>
-	<div>
-		<input type="password" name="password" value="">
-	</div>
-	<div>
-		<input type="submit" name="" value="Submit">
-	</div>
-</form>
- -->
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Mysqli test</title>
+ 	<title>Mysqli test</title>
 	<style type="text/css">
 		th, td {
 			padding: 10px;
@@ -50,122 +38,22 @@ include_once("Post.php");
 
 <?php 
 
-const HOST = 'localhost';
-const USER = 'root';
-const PASSWORD = null;
-const DATABASE = 'new_test';
- 
-$mysqli = new mysqli(HOST,  USER, PASSWORD, DATABASE);
+$usermodel = new UserModel();
+$usermodel->connect();
 
-if (!$mysqli)
-{
-	die('Error connect to database!');
-}
-
-$result = $mysqli->query("SELECT * FROM users");
-
-if ($result == false)
-{
-	die('mysqli query error');
-}
-
-$rows = $result->fetch_all(MYSQLI_ASSOC);// разбить полученое на массив объектов user
-
-foreach ($rows as $row) { ?>
-	<tr>
-		<td> <?= $row["id"] 	   ?> </td>
-		<td> <?= $row["email"] 	   ?> </td>
-		<td> <?= $row["password"]  ?> </td>
-		<td> <?= $row["name"] 	   ?> </td>
-		<td> <?= $row["last_name"] ?> </td>
-	</tr>
-<?php
-	}
-
-?>
-</table>
-
-<br>
-<h3></h3>
-<form action="addUser.php" method="post">
-	<p>Email</p>
-	<input type="text" name="email">
-	<p>Password</p>	
-	<input type="password" name="password">
-	<p>Name</p>
-	<input type="text" name="name">
-	<p>Last Name</p>
-	<input type="text" name="last_name">
-	<br><br>
-	<button type="submit">Add new user</button>
-</form>
-
-<br>
-
-<table>
-<?php 
-
-// test user
-$user = new User(0, "email@go", "32312p", "name22", "last_name321");
-
-$user->setId(2);
-$user->setEmail("eijfd@yachooooo.com");
-$user->setPassword("io12ERFIOSAP43ejqew23qrp40o");
-$user->setName("Andrey");
-$user->setLastName("Martini");
-
-	?>
-
-	<tr>
-		<td> <?= $user->getId();   	   ?> </td>
-		<td> <?= $user->getEmail();	   ?> </td>
-		<td> <?= $user->getPassword(); ?> </td>
-		<td> <?= $user->getName();	   ?> </td>
-		<td> <?= $user->getLastName(); ?> </td>
+$users = $usermodel->readAll();
+var_dump($users);
+foreach ($users as $user) { ?>
+<tr>
+		<td> <?= $user["id"];   	   ?> </td>
+		<td> <?= $user["email"];	   ?> </td>
+		<td> <?= $user["password"]; ?> </td>
+		<td> <?= $user["name"];	   ?> </td>
+		<td> <?= $user["last_name"]; ?> </td>
 	</tr>
 
-</table>
+<?php } ?>
 
-<?php 
-
-
-$post = new Post(0, $user->getEmail(), $user->getPassword(), $user->getName(), $user->getLastName());
- 
-
-?>
-<table>
-	<tr>
-		<td> <?= $post->getId();   	 ?> </td>
-		<td> <?= $post->getTitle();	 ?> </td>
-		<td> <?= $post->getBody();   ?> </td>
-		<td> <?= $post->getUserId(); ?> </td>
-	</tr>
-</table>
-
-<table>
-<?php 
-
-$result = $mysqli->query("SELECT * FROM posts");
-
-if ($result == false)
-{
-	die('mysqli query error');
-}
-
-$mysqli->close();
-
-$rows = $result->fetch_all(MYSQLI_ASSOC);// разбить полученое на массив объектов user
-
-foreach ($rows as $row) { ?>
-	<tr>
-		<td> <?= $row["id"] 	   ?> </td>
-		<td> <?= $row["title"] 	   ?> </td>
-		<td> <?= $row["body"]  ?> </td>
-		<td> <?= $row["user_id"] 	   ?> </td>
-	</tr>
-<?php 
-	}; 
-?>
 </table>
 </body>
 </html>
