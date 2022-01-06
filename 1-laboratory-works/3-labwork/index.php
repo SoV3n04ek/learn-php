@@ -107,6 +107,12 @@ $mysqli->close();
 // test user
 $user = new User(0, "email@go", "32312p", "name22", "last_name321");
 
+$user->setId(2);
+$user->setEmail("eijfd@yachooooo.com");
+$user->setPassword("io12ERFIOSAP43ejqew23qrp40o");
+$user->setName("Andrey");
+$user->setLastName("Martini");
+
 	?>
 
 	<tr>

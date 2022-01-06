@@ -8,14 +8,14 @@
 
 		public function __construct($id = 0, $email = null, $password = null, $name = null, $last_name = null) 
 		{
-	 		
 	 		$this->id 		 = $id;
         	$this->email 	 = $email;
         	$this->password  = $password;
         	$this->name 	 = $name;
-        	$this->last_name = $last_name;
-        	
+        	$this->last_name = $last_name;      	
 	    }
+
+	    // getters
 
 	    public function getId() 	  { return $this->id; }
 
@@ -27,28 +27,17 @@
 
 	    public function getLastName() { return $this->last_name; }
 
-	    // settors
+	    // setters
 	 
-	 	public function setId($id) {	
-	    	$this->id = $id;
-	    }
+	 	public function setId($id) 			    { $this->id = $id; 			     }
+	
+	    public function setEmail($email)        { $this->email = $email;		 }
 
-	    public function setEmail($email) {
-	    	$this->email = $email;
-	    }
+	    public function setPassword($password)  { $this->password = $password;   }
 
-	    public function setPassword($password) {
-	    	$this->password = $password;
-	    }
+	    public function setName($name) 	        { $this->name = $name; 			 }
 
-	    public function setName($name) {
-	    	$this->name = $name;
-	    }
-
-	    public function setLastName($last_name) {
-			$this->last_name = $last_name;
-	    }
-
+	    public function setLastName($last_name) { $this->last_name = $last_name; }
 	       
 	}
 ?>
