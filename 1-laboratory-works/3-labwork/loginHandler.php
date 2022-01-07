@@ -10,8 +10,6 @@
 
 	if (isset($log) && isset($pass))
 	{
-		//var_dump($login->isCorrect(trim($log), trim($pass)));
-
 		if ($login->isCorrect(trim($log), trim($pass)))
 		{
 			echo '<h1>Succesfuly signed</h1>';

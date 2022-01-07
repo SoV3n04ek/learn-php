@@ -84,19 +84,18 @@
 
 		public function update(User $user)
 		{
-			if (isset($user))
-			{
-				$sqlquery = self::UPDATE_QUERY . 
-				"   `email`     = ' " . $user->getEmail()    . " ',
-					`password`  = ' " . $user->getPassword() . " ',
-					`name`      = ' " . $user->getName()     . " ',
-					`last_name` = ' " . $user->getLastName() . "'
-						WHERE id = " . $user->getId() . " ";
+			$sqlquery = self::UPDATE_QUERY . 
+			"   `email`     = ' " . $user->getEmail()    . " ',
+				`password`  = ' " . $user->getPassword() . " ',
+				`name`      = ' " . $user->getName()     . " ',
+				`last_name` = ' " . $user->getLastName() . "'
+					WHERE id = " . $user->getId() . " ";
 
-				$this->connect->query($sqlquery);
+			$result = $this->connect->query($sqlquery);
 
+			if ($result)
 				return true;
-			}
+			
 			return false;
 		}
 

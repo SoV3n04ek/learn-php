@@ -5,12 +5,15 @@ session_start();
 include_once("UserModel.php");
 include_once("PostModel.php");
 
-$login = trim($_SESSION['login']);
+
+$login = ''; 
 
 
 $user_id = 0;
 if (isset($_SESSION['isSigned']))
 {
+	$login = trim($_SESSION['login']);
+	 
 	$usermodel = new UserModel();
 	$usermodel->connect();
 
