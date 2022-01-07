@@ -81,10 +81,9 @@
 			if (isset($post))
 			{
 				$sqlquery = self::UPDATE_QUERY . 
-				"   `email`     = ' " . $post->getEmail()    . " ',
-					`password`  = ' " . $post->getTitle() . " ',
-					`name`      = ' " . $post->getBody()     . " ',
-					`last_name` = ' " . $post->getUserId() . "'
+				"   `title`   = ' " . $post->getTitle() . " ',
+					`body`    = ' " . $post->getBody()     . " ',
+					`user_id` = ' " . $post->getUserId() . "'
 						WHERE id = "  . $post->getId() . " ";
 
 				$this->connect->query($sqlquery);

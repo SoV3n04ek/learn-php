@@ -44,14 +44,28 @@ var_dump($posts);
 
 foreach ($posts as $post) { ?>
 
-<tr>
-		<td><?= $post["id"]; ?></td>
-		<td><?= $post["title"]; ?></td>
-		<td><?= $post["body"]; ?></td>
+	<tr>
+		<td><?= $post["id"];      ?></td>
+		<td><?= $post["title"];   ?></td>
+		<td><?= $post["body"];    ?></td>
 		<td><?= $post["user_id"]; ?></td>
 	</tr>
 
 <?php } ?>
+
+<?php 
+
+$post = $postModel->readOne();
+$post->setTitle("Meow777 best holiday");
+
+if ($postModel->update($post))
+{
+	echo "Succes Update";
+}
+$postModel->delete($post);
+
+?>
+
 </table>
 </body>
 </html>

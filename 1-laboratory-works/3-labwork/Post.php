@@ -25,11 +25,11 @@
 
 		public function setId($id) 		   { $this->id = $id;    	    }
 	
-	    public function setEmail($title)   { $this->title = $title;		}
+	    public function setTitle($title)   { $this->title = $title;		}
 
-	    public function setPassword($body) { $this->body = $body;       }
+	    public function setBody($body) { $this->body = $body;       }
 
-	    public function setName($user_id)  { $this->user_id = $user_id; }
+	    public function setUserId($user_id)  { $this->user_id = $user_id; }
 	       
 	}
 ?>
