@@ -1,7 +1,14 @@
 <?php
-	if (isset($_POST['login']) && isset($_POST['password']))
+	include_once("UserModel.php");
+
+	if (isset($_POST['login']) && isset($_POST['password']) && isset($_POST['name']) && isset($_POST['last_name']))
 	{	
 		$found = false;
+		
+		$login     = trim($_POST['login']);
+		$password  = trim($_POST['password']); 
+		$name      = trim($_POST['name']);
+		$last_name = trim($_POST['last_name']);
 
 		$usermodel = new UserModel();
 		$usermodel->connect();
@@ -11,73 +18,26 @@
 		$userpassword = '';
 
 		foreach ($users as $user) {
-			$userlog      = $user["email"];
-			$userpassword = $user["password"]; 
-			$userid 	  = $user["id"];
+			$userlog = trim($user["email"]);
 	
-			if(strcmp(trim($login), trim($userlog)) == 0)
+			if(strcmp($login, $userlog) == 0)
 			{
 				$found = true;
 		   		break;
 			}
-		}
+		}			
 			
-			
-		if ($found == false) {
-			return false;
-		}
-
-		if (strcmp(trim($userpassword), trim($password)) != 0) {
-			return false;
-		} 
-
-		return true;
-
-		if ($handle) {
-			$found = false;
-
-		    while (($buffer = fgets($handle, 4096)) !== false)
-		    {
-		     	$arr = explode('|', $buffer);
-
-		     	// if user is added
-			    if(strcmp($_POST['login'], $arr[0]) == 0)
-				{
-					$found = true;
-			   		fclose($handle);
-			   		break;
-				}
-			    //array[0] = login
-
-			    if (feof($handle)) {
-			        echo "Error: unexpected fgets() fail\n";
-			    }			  
-		    }	
-		}
-
-		if ($found)
-		{
-			echo("Oops, already exists");
+		if ($found) {
+			echo "OOOOPS, user with this login already exist<br>";
 		}
 		else
-		{				
-			$handle = fopen('users.txt', 'a+');
-			echo($handle);
-			
-			var_dump($_POST['login']);
-			echo '<br>';
-	
-			var_dump($_POST['password']);
-			echo '<br>';
-	
-			$log = $_POST['login'];
-			$pas = md5($_POST['password']);
-			
-			fwrite($handle, $log . '|' . $pas . PHP_EOL);
-			fclose($handle);
-			
-			echo("Succes!");
-		} 
+		{
+			$user = new User(null, $login, $password, $name, $last_name);
+			$usermodel->create($user);
+			echo "User Added Succesfuly";
+		}
+		
+		
 	}
 ?>
 
