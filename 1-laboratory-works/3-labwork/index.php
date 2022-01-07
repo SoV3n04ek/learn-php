@@ -1,8 +1,6 @@
 <?php 
-include_once("User.php");
-include_once("Post.php");
 include_once("UserModel.php");
-
+include_once("PostModel.php");
 ?>
 
 <!DOCTYPE html>
@@ -30,36 +28,30 @@ include_once("UserModel.php");
 <table>
 	<tr>
 		<td>Id</td>
-		<td>Email</td>
-		<td>Password</td>
-		<td>Name</td>
-		<td>Last Name</td>
+		<td>Title</td>
+		<td>Body</td>
+		<td>user_id</td>
 	</tr>
 
 <?php 
 
-$usermodel = new UserModel();
-$usermodel->connect();
+$postModel = new PostModel();
+$postModel->connect();
+// $post = new Post(0, "some title", "some body", 15);
+// $postModel->create($post);
+$posts = $postModel->readAll();
+var_dump($posts);
 
-$user = $usermodel->readOne();
+foreach ($posts as $post) { ?>
 
-$user->setPassword("23945r0qi");
-$user->setName("Ivan");
+<tr>
+		<td><?= $post["id"]; ?></td>
+		<td><?= $post["title"]; ?></td>
+		<td><?= $post["body"]; ?></td>
+		<td><?= $post["user_id"]; ?></td>
+	</tr>
 
-
-if ($usermodel->update($user))
-{
-	echo "Succes Update";
-}
-else 
-	echo "ERROR in Update";
-
-$user->setId(14);
-
-$usermodel->delete($user);
-
-?>
-
+<?php } ?>
 </table>
 </body>
 </html>

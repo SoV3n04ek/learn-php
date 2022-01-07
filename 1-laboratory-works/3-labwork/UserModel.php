@@ -105,5 +105,4 @@
 			$resultq = $this->connect->query(self::DELETE_QUERY . $user->getId());
 		}
 	}
-
 ?>
