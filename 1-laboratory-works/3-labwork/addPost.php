@@ -1,12 +1,12 @@
 <?php
-	
-	if (isset($_GET["user_id"]))
-		$user_id = $_GET["user_id"];
+	$user_id = 0;
+	if (isset($_GET["id"]))
+		$user_id = $_GET["id"];
 ?>
 
 <h1>Add post form</h1>
 <?php 
-	echo '<form id="form1" action="addPostHandler.php?id=' . $user_id . '" method="POST">';
+	echo '<form id="form" action="addPostHandler.php?id=' . $user_id . ' " method="POST">';
 ?>
 	<h4>Title</h4>
 	<div>

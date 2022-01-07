@@ -2,8 +2,8 @@
 
 $user_id = 0;
 
-if (isset($_GET["user_id"]))
-	$user_id = $_GET["user_id"];
+if (isset($_GET["id"]))
+	$user_id = $_GET["id"];
 
 include_once "PostModel.php";
 
@@ -11,7 +11,6 @@ if (isset($_POST['title']) && isset($_POST['body']))
 {
 	$title   = $_POST['title'];
 	$body    = $_POST['body'];
-	$user_id = $_POST['user_id'];
 	
 	$postmodel = new PostModel();
 	$postmodel->connect();

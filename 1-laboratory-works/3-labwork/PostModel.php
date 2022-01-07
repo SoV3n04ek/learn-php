@@ -38,8 +38,6 @@
 				' " . $post->getUserId()   . " ');";
 
 			$resultq = $this->connect->query($sqlquery);
-			
-			var_dump($sqlquery);
 
 			if ($resultq != false)
 			 	return true;
