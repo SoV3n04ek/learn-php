@@ -36,8 +36,6 @@
 			$usermodel->create($user);
 			echo "User Added Succesfuly";
 		}
-		
-		
 	}
 ?>
 

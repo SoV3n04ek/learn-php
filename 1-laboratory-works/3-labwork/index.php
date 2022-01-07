@@ -5,6 +5,27 @@ session_start();
 include_once("UserModel.php");
 include_once("PostModel.php");
 
+$login = trim($_SESSION['login']);
+
+
+$user_id = 0;
+if (isset($_SESSION['isSigned']))
+{
+	$usermodel = new UserModel();
+	$usermodel->connect();
+
+	$users = $usermodel->readAll();
+
+	foreach ($users as $user) {
+		$userlog = trim($user["email"]);
+		$user_id = $user["id"];
+		if(strcmp($login, $userlog) == 0)
+		{
+	   		break;
+		}
+	}			
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -33,8 +54,10 @@ include_once("PostModel.php");
 <?php 
 	if (isset($_SESSION['isSigned']))
 	{
-		echo '<h1>Welcome to the site, ' . $_SESSION['login'] . '!!!<br>';
-		echo '<h1 class="btn btn-success"><a href="showUsers.php">Show</a></h1>';
+		echo '<h1>Welcome to the site, ' . $login . '!!!<br>';
+		echo '<h1 class="btn btn-success"><a href="showPosts.php">Show Posts</a></h1>';
+		echo '<h1 class="btn btn-success"><a href="addPost.php?id='. $user_id.'">Add post</a></h1>';
+		echo '<h1 class="btn btn-success"><a href="updateProfile.php">Update Profile Data</a></h1>';
 		echo '<h1><a href="logoutHandler.php">Logout</a></h1>';
 	} 
 	else
