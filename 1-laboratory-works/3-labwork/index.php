@@ -1,6 +1,10 @@
 <?php 
+
+session_start();
+
 include_once("UserModel.php");
 include_once("PostModel.php");
+
 ?>
 
 <!DOCTYPE html>
@@ -25,46 +29,26 @@ include_once("PostModel.php");
 </head>
 <body>
 
-<table>
-	<tr>
-		<td>Id</td>
-		<td>Title</td>
-		<td>Body</td>
-		<td>user_id</td>
-	</tr>
 
 <?php 
-
-$postModel = new PostModel();
-$postModel->connect();
-// $post = new Post(0, "some title", "some body", 15);
-// $postModel->create($post);
-$posts = $postModel->readAll();
-var_dump($posts);
-
-foreach ($posts as $post) { ?>
-
-	<tr>
-		<td><?= $post["id"];      ?></td>
-		<td><?= $post["title"];   ?></td>
-		<td><?= $post["body"];    ?></td>
-		<td><?= $post["user_id"]; ?></td>
-	</tr>
-
-<?php } ?>
-
-<?php 
-
-$post = $postModel->readOne();
-$post->setTitle("Meow777 best holiday");
-
-if ($postModel->update($post))
-{
-	echo "Succes Update";
-}
-$postModel->delete($post);
-
+	if (isset($_SESSION['isSigned']))
+	{
+		echo '<h1>Welcome to the site, ' . $_SESSION['login'] . '!!!<br>';
+		echo '<h1 class="btn btn-success"><a href="showUsers.php">Show</a></h1>';
+		echo '<h1><a href="logoutHandler.php">Logout</a></h1>';
+	} 
+	else
+	{
+		echo '<h1 class="btn btn-success"><a href="loginForm.php">Login</a></h1>
+			<br>
+			<h1 class="btn btn-success">
+				<a href="registrationForm.php">Registration</a>
+			</h1>
+			<br>';
+	}
 ?>
+
+
 
 </table>
 </body>

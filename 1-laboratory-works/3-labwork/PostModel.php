@@ -26,7 +26,7 @@
 
 		public function close()
 		{
-			mysql_close($connect);
+			mysqli_close($this->connect);
 		}	
 
 		// add argument User $user
