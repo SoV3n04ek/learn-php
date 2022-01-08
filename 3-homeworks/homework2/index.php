@@ -1,9 +1,11 @@
 <?php 
 	function save($country) : bool
-	{
+	{		
 		if (isAlreadyExist($country))
 			return false;
-
+		if (!isExistInDictionary($country))
+			return false;
+		
 		$handle = fopen('countries.txt', 'a+');
 		fwrite($handle, $country . PHP_EOL);
 		
@@ -12,13 +14,42 @@
 		return true;
 	}
 
+	function isExistInDictionary($country) : bool
+	{
+		$handle = fopen('dictionary.txt', 'a+');
+		
+		$found = false;
+
+		if ($handle) {
+			
+		    while (($buffer = fgets($handle, 4096)) !== false)
+		    {
+		     	// if user is added
+			    if(strcmp($country, trim($buffer)) == 0)
+				{
+					$found = true;
+			   		break;
+				}
+
+			    if (feof($handle)) {
+			        echo "Error: unexpected fgets() fail\n";
+			    }			  
+		    }	
+		}
+		
+		fclose($handle);
+
+		return $found;
+	}
+
 	function isAlreadyExist($country) : bool
 	{
 		$handle = fopen('countries.txt', 'a+');
 
-		if ($handle) {
-			$found = false;
+		$found = false;
 
+		if ($handle) {
+		
 		    while (($buffer = fgets($handle, 4096)) !== false)
 		    {
 		     	// if user is added
@@ -89,7 +120,7 @@
 			
 			<br>
 
-			<a href="showCountries.php">Show</a></h1>
+			<h1><a href="showCountries.php">Select</a></h1>
 		</center>
 	</body>
 </html>
