@@ -1,3 +1,4 @@
+<?php
 abstract class Migration
 {
     public function up() {
@@ -8,3 +9,4 @@ abstract class Migration
  
     }
 }
+?>
