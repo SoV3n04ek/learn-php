@@ -7,7 +7,7 @@ class migration220110_234019 extends Migration
 	const PASSWORD = null;
 	const DATABASE = 'new_test';
 
-	private $connect = new mysqli(self::HOST, self::USER, self::PASSWORD, self::DATABASE);
+	private $connect;
 
 	public function connect()
 	{
@@ -24,7 +24,7 @@ class migration220110_234019 extends Migration
 	
     public function up() {
         $this->$connect->query("
-        	CREATE TABLE poststest (
+        	CREATE TABLE posts (
 			    id int NOT NULL AUTO_INCREMENT,
 			    body text NOT NULL,
 			    title varchar(64),
@@ -36,7 +36,7 @@ class migration220110_234019 extends Migration
     }
  
     public function down() {
-        $this->$connect->query("DROP TABLE users;");
+        $this->$connect->query("DROP TABLE posts;");
 	}
 }
 
