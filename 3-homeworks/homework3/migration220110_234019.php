@@ -1,6 +1,6 @@
 <?php
 
-class migration220110_124312 extends Migration
+class migration220110_234019 extends Migration
 {
 	const HOST     = 'localhost';
 	const USER     = 'root';
@@ -24,13 +24,14 @@ class migration220110_124312 extends Migration
 	
     public function up() {
         $this->$connect->query("
-        	CREATE TABLE users (
+        	CREATE TABLE poststest (
 			    id int NOT NULL AUTO_INCREMENT,
-			    email varchar(64),
-			    password varchar(64),
+			    body text NOT NULL,
+			    title varchar(64),
 			    name varchar(64),
-			    last_name varchar(64),
-			    PRIMARY KEY (id)
+			    user_id int NOT NULL,
+			    PRIMARY KEY (id),
+    			FOREIGN KEY (user_id)  REFERENCES users (id)
 			);");
     }
  
