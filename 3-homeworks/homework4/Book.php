@@ -34,4 +34,4 @@
 
 	    public function setAuthorId($name) 	         { $this->name = $name; }
 	}
-?>
+?>	
