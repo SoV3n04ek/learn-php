@@ -7,7 +7,7 @@
 		const HOST         = 'localhost';
 		const USER         = 'root';
 		const PASSWORD     = null;
-		const DATABASE     = 'new_test';
+		const DATABASE     = 'book_store';
 		const TABLE_NAME   = 'books';
 		const DELETE_QUERY = 'DELETE FROM ` ' . TABLE_NAME . ' ` WHERE id = ';
 		const INSERT_QUERY = "INSERT INTO posts (title, body, user_id) VALUES";
