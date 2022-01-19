@@ -18,9 +18,9 @@
 
 	    public function getId() 	     { return $this->id; }
 
-	    public function getName() 	     { return $this->email; }
+	    public function getName() 	     { return $this->name; }
 
-	    public function getDescription() { return $this->password; }
+	    public function getDescription() { return $this->description; }
 
 	    public function getAuthorId() 	 { return $this->author_id; }
 
@@ -30,8 +30,8 @@
 	
 	    public function setName($name)               { $this->name = $name; }
 
-	    public function setDescription($description) { $this->description = $description;   }
+	    public function setDescription($description) { $this->description = $description; }
 
-	    public function setAuthorId($name) 	         { $this->name = $name; }
+	    public function setAuthorId($author_id)      { $this->author_id = $author_id; }
 	}
 ?>	
