@@ -93,7 +93,6 @@
 			}
 			return false;
 		}
-
 		public function delete(Post $post)
 		{
 			$resultq = $this->connect->query(self::DELETE_QUERY . $post->getId());
