@@ -30,7 +30,7 @@
 
 	    // setters
 	 
-	 	public function setId($id) 			         { $this->id = $id; }
+	 public function setId($id) 			         { $this->id = $id; }
 	
 		public function setGenreId($genre_id)		 { $this->genre_id = $genre_id; }
 
