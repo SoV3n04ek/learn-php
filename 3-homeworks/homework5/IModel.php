@@ -7,7 +7,7 @@
 		public function readOne();
 		public function delete();
 		
-	    public function connect();
+	   	public function connect();
 	    public function close();
 	}
 ?>
