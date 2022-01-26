@@ -6,7 +6,7 @@
 	{
 		const HOST         = 'localhost';
 		const USER         = 'root';
-		const PASSWORD     = null;
+		const PASSWORD     =  null;
 		const DATABASE     = 'book_store';
 		const TABLE_NAME   = 'books';
 		const DELETE_QUERY = 'DELETE FROM ` ' . TABLE_NAME . ' ` WHERE id = ';
