@@ -1,5 +1,6 @@
 <?php
 	include_once("Book.php");
+	include_once("BookModel.php")
 
 	$b = new Book(1, 'Abrakadabra', 'dfsgdifoasdoo', 11, 16);
 
